@@ -49,16 +49,59 @@ These values can then be sorted by a specific metric to find treatments of inter
 Based on the summary statistics, the four treatment regimens that yield the smallest average tumor size are Capomulin, Ceftamin, Propriva, and Ramincane.
 
 ### Calculate Quartiles, Find Outliers, and Create a Box Plot 
+We can then calculate quartiles for the the four most promising treament regimens and identify any outliers that may be worth taking a look at. We can do this by taking the last time point for each mouse and grouping them by Mouse ID. Once each treatment is grouped by Mouse ID, we can calculate quartiles and print outliers. 
 
-1. Calculate the final tumor volume of each mouse across four of the most promising treatment regimens: Capomulin, Ramicane, Infubinol, and Ceftamin. Then, calculate the quartiles and IQR and determine if there are any potential outliers across all four treatment regimens. Follow these substeps:
+<p align="center">
+<img width="1053" alt="Screenshot 2023-07-05 at 4 04 45 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/913f8752-5e7a-472c-840c-28034a5e8765">
+</p>
 
-    * Create a grouped DataFrame that shows the last (greatest) time point for each mouse. Merge this grouped DataFrame with the original cleaned DataFrame.
+The following code prints the following: 
+Regimen: Capomulin
+The lower quartile of tumor volumes is: 32.37735684
+The upper quartile of tumor volumes is: 40.1592203
+The interquartile range of tumor volumes is: 7.781863460000004
+Values below 20.70456164999999 could be outliers.
+Values above 51.83201549 could be outliers.
+Capomulin's potential outliers:
+Empty DataFrame
+Columns: [Mouse ID, Tumor Volume (mm3)]
+Index: []
 
-    * Create a list that holds the treatment names, as well as a second, empty list to hold the tumor volume data.
 
-    * Loop through each drug in the treatment list, locating the rows in the merged DataFrame that correspond to each treatment. Append the resulting final tumor volumes for each drug to the empty list. 
+Regimen: Ramicane
+The lower quartile of tumor volumes is: 31.56046955
+The upper quartile of tumor volumes is: 40.65900627
+The interquartile range of tumor volumes is: 9.098536719999998
+Values below 17.912664470000003 could be outliers.
+Values above 54.30681135 could be outliers.
+Ramicane's potential outliers:
+Empty DataFrame
+Columns: [Mouse ID, Tumor Volume (mm3)]
+Index: []
 
-    * Determine outliers by using the upper and lower bounds, and then print the results.
+
+Regimen: Propriva
+The lower quartile of tumor volumes is: 49.12296898
+The upper quartile of tumor volumes is: 62.57087961
+The interquartile range of tumor volumes is: 13.447910629999996
+Values below 28.95110303500001 could be outliers.
+Values above 82.742745555 could be outliers.
+Propriva's potential outliers:
+Empty DataFrame
+Columns: [Mouse ID, Tumor Volume (mm3)]
+Index: []
+
+
+Regimen: Ceftamin
+The lower quartile of tumor volumes is: 48.72207785
+The upper quartile of tumor volumes is: 64.29983003
+The interquartile range of tumor volumes is: 15.577752179999997
+Values below 25.355449580000002 could be outliers.
+Values above 87.66645829999999 could be outliers.
+Ceftamin's potential outliers:
+Empty DataFrame
+Columns: [Mouse ID, Tumor Volume (mm3)]
+Index: []
     
 2. Using Matplotlib, generate a box plot of the final tumor volume for all four treatment regimens. Highlight any potential outliers in the plot by changing their color and style.
 
