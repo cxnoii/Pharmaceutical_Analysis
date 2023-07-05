@@ -41,20 +41,12 @@ The purpose of this analysis is observe how effective each treatment is to treat
 <img width="969" alt="Screenshot 2023-07-05 at 3 25 43 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/c96fb93f-fca7-4fb8-ad0c-39ef64f540b5">
 </p>
 
+These values can then be sorted by a specific metric to find treatments of interest, here they are sorted my the average mean tumor size.
+<p align="center">
+<img width="510" alt="Screenshot 2023-07-05 at 3 43 18 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/38e84528-c22b-49d8-bc6e-43cbc6422699">
+</p>
 
-### Create Bar Charts and a Pie Charts
-
-1. Generate two bar plots. Both plots should be identical and show the total number of timepoints for all mice tested for each drug regimen throughout the course of the study.
-
-    * Create the first bar plot by using Pandas's `DataFrame.plot()` method.
-
-    * Create the second bar plot by using Matplotlib's `pyplot` methods.
-
-2. Generate two pie plots. Both plots should be identical and show the distribution of female or male mice in the study.
-
-    * Create the first pie plot by using both Pandas's `DataFrame.plot()`.
-
-    * Create the second pie plot by using Matplotlib's `pyplot` methods.
+Based on the summary statistics, the four treatment regimens that yield the smallest average tumor size are Capomulin, Ceftamin, Propriva, and Ramincane.
 
 ### Calculate Quartiles, Find Outliers, and Create a Box Plot 
 
