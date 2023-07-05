@@ -24,22 +24,23 @@ The dataset contains the following metrics
 
 
 3. Before conducting any analysis, the dataset must be cleaned; duplicated rows will affect the integrity of the results.
+<p align="center">
 <img width="820" alt="Screenshot 2023-07-05 at 3 13 35 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/febbf9ee-0d98-4602-8c16-c3b77c0453c4">
+</p>
 
 Using pandas dataframe function, .duplicated, reveals that mouse_id g989 has duplicated rows that must be removed from the dataset.
+<p align="center">
 <img width="576" alt="Screenshot 2023-07-05 at 3 15 45 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/8146b385-8466-424f-bad3-1b0da66398d7">
+</p>
 
 With the dataset cleaned, accurate summary statistics can now be generated. 
 
-### Generate Summary Statistics
+### Summary Statistics
+The purpose of this analysis is observe how effective each treatment is to treat SCC. The key metric of interest is Tumor Volume (mm3) and we can generate statistics for each treatment using an aggregation function, specifying the statistics that we want to observe: mean, median, variance, standard deviation, and standard error of mean. 
+<p align="center">
+<img width="576" alt="Screenshot 2023-07-05 at 3 15 45 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/b29a00d3-71c7-4107-a100-44c2d8be376e">
+</p>
 
-Create a DataFrame of summary statistics. Remember, there is more than one method to produce the results you're after, so the method you use is less important than the result.
-
-Your summary statistics should include:
-
-* A row for each drug regimen. These regimen names should be contained in the index column.
-
-* A column for each of the following statistics: mean, median, variance, standard deviation, and SEM of the tumor volume.
 
 ### Create Bar Charts and a Pie Charts
 
