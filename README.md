@@ -36,9 +36,9 @@ Using pandas dataframe function, .duplicated, reveals that mouse_id g989 has dup
 With the dataset cleaned, accurate summary statistics can now be generated. 
 
 ### Summary Statistics
-The purpose of this analysis is observe how effective each treatment is to treat SCC. The key metric of interest is Tumor Volume (mm3) and we can generate statistics for each treatment using an aggregation function, specifying the statistics that we want to observe: mean, median, variance, standard deviation, and standard error of mean. 
+The purpose of this analysis is observe how effective each treatment is to treat SCC. The key metric of interest is Tumor Volume (mm3) and we can generate statistics for each treatment using pandas' groupby function, specifying the statistics that we want to observe: mean, median, variance, standard deviation, and standard error of mean. 
 <p align="center">
-<img width="576" alt="Screenshot 2023-07-05 at 3 15 45 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/b29a00d3-71c7-4107-a100-44c2d8be376e">
+<img width="969" alt="Screenshot 2023-07-05 at 3 25 43 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/c96fb93f-fca7-4fb8-ad0c-39ef64f540b5">
 </p>
 
 
