@@ -58,6 +58,7 @@ We can then calculate quartiles for the the four most promising treament regimen
 The preceeding code prints the following: 
 
 Regimen: Capomulin
+
 The lower quartile of tumor volumes is: 32.37735684
 The upper quartile of tumor volumes is: 40.1592203
 The interquartile range of tumor volumes is: 7.781863460000004
