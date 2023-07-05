@@ -1,31 +1,26 @@
 ## Background
+The purpose of this project is to analyze a mock dataset of pharmaceutical anti-cancer treatments for sqamous cell carcinoma (SCC), a commonly occuring form of skin cancer. This analysis will compare the performance of Capomulin versus other treatment regimens listed in the data set. The dataset contains 249 mice identified with SCC tumor growth that were treated with a variety of drug regimens. Tumor development for these mice were observed and measured for 45 days.
 
-You've just  joined Pymaceuticals Inc., a new pharmaceutical company that specializes in anti-cancer pharmaceuticals. Recently, it began screening for potential treatments for squamous cell carcinoma (SCC), a commonly occurring form of skin cancer.
+## Data
+The dataset contains the following metrics
+* Mouse ID
+* Timepoint: Time of observation ranging from 0-45 minutes
+* Tumor Volume (mm3)
+* Metastatic Sites
+* Drug Regimen
+* Sex
+* Age (Months)
+* Weight (g)
 
-As a senior data analyst at the company, you've been given access to the complete data from their most recent animal study. In this study, 249 mice identified with SCC tumor growth were treated with a variety of drug regimens. Over the course of 45 days, tumor development was observed and measured. The purpose of this study was to compare the performance of Pymaceuticals' drug of interest, Capomulin, versus the other treatment regimens. 
+## Methods
 
-The executive team has tasked you with generating all of the tables and figures needed for the technical report of the study. They have also asked for a top-level summary of the study results.
 
-## Instructions
+### Data Preparation
+1. The dataset was first read into a dataframe from a csv using Pandas. 
+<img width="802" alt="Screenshot 2023-07-05 at 3 08 15 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/1c27160c-3fa4-4b12-875f-8e42d3f68683">
 
-Your tasks are to do the following:
 
-* Prepare the data.
-
-* Generate summary statistics.
-
-* Create bar charts and pie charts.
-
-* Calculate quartiles, find outliers, and create a box plot.
-
-* Create a line plot and a scatter plot.
-
-* Calculate correlation and regression. 
-
-* Submit your final analysis. 
-
-### Prepare the Data
-
+2. Before conducting any analysis, the dataset must be cleaned. 
 1. Run the provided package dependency and data imports, and then merge the `mouse_metadata` and `study_results` DataFrames into a single DataFrame.
 
 2. Display the number of unique mice IDs in the data, and then check for any mouse ID with duplicate time points. Display the data associated with that mouse ID, and then create a new DataFrame where this data is removed. Use this cleaned DataFrame for the remaining step.
@@ -106,13 +101,6 @@ Review all the figures and tables that you generated in this assignment. Write a
 
   * Where in the DataFrame can I find the names that will go into the labels?
 
- 
-* Get help when you need it! Your instructional team is here to help.
-## Rubric
-
-[Unit 5 Homework Rubric](https://docs.google.com/document/d/1ZZ0lFGHqKwVdqjTCfynY2FSiswuOMBVi9An7oWeg344/edit?usp=sharing)
-
-- - -
 
 ## References
 
