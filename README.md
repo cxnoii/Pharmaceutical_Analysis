@@ -79,7 +79,7 @@ The upper quartile of tumor volumes is: 62.57087961 \
 The interquartile range of tumor volumes is: 13.447910629999996 \
 Values below 28.95110303500001 could be outliers. \
 Values above 82.742745555 could be outliers. \
-No potential outliers! \
+No potential outliers!\
 
 Regimen: Ceftamin \
 The lower quartile of tumor volumes is: 48.72207785 \
