@@ -73,7 +73,7 @@ Values below 17.912664470000003 could be outliers. \
 Values above 54.30681135 could be outliers. \
 No potential outliers! 
 
-Regimen: Propriva \
+Regimen: Propriva\
 The lower quartile of tumor volumes is: 49.12296898 \
 The upper quartile of tumor volumes is: 62.57087961 \
 The interquartile range of tumor volumes is: 13.447910629999996 \
