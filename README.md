@@ -65,7 +65,7 @@ Values below 20.70456164999999 could be outliers. \
 Values above 51.83201549 could be outliers.
 No potential outliers! 
 
-Regimen: Ramicane\ 
+Regimen: Ramicane \
 The lower quartile of tumor volumes is: 31.56046955 \
 The upper quartile of tumor volumes is: 40.65900627 \
 The interquartile range of tumor volumes is: 9.098536719999998 \
