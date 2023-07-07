@@ -1,3 +1,8 @@
+
+<p align="center">
+<img width="255" alt="Screenshot 2023-07-07 at 1 39 22 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/8c5ec445-a7e3-4003-80fd-f8b5b0f8a8a7">
+</p>
+
 ## Background
 The purpose of this project is to analyze a mock dataset of pharmaceutical anti-cancer treatments for sqamous cell carcinoma (SCC), a commonly occuring form of skin cancer. This analysis will compare the performance of Capomulin versus other treatment regimens listed in the data set. The dataset contains 249 mice identified with SCC tumor growth that were treated with a variety of drug regimens. Tumor development for these mice were observed and measured for 45 days.
 
