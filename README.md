@@ -48,7 +48,7 @@ These values can then be sorted by a specific metric to find treatments of inter
 
 Based on the summary statistics, the four treatment regimens that yield the smallest average tumor size are Capomulin, Ceftamin, Propriva, and Ramincane.
 
-### Calculate Quartiles, Find Outliers, and Create a Box Plot 
+### Quartiles, Outliers, and Boxplot
 We can then calculate quartiles for the the four most promising treament regimens and identify any outliers that may be worth taking a look at. We can do this by taking the last time point for each mouse and grouping them by Mouse ID. Once each treatment is grouped by Mouse ID, we can calculate quartiles and print outliers. 
 
 <p align="center">
@@ -88,41 +88,36 @@ The interquartile range of tumor volumes is: 15.578\
 Values below 25.355 could be outliers.\
 Values above 87.666 could be outliers.\
 No potential outliers!
-    
 
-### Create a Line Plot and a Scatter Plot
+Pandas .plot function was then used in order visualize the results.
+<p align='center'>
+<img width="584" alt="Screenshot 2023-07-07 at 1 07 37 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/42d1bf9e-ed37-4fec-8b0c-2e25610bf5a4">
+</p>
 
-1. Select a mouse that was treated with Capomulin and generate a line plot of tumor volume vs. time point for that mouse.
+The boxplot suggests that Capomulin remains the best treatment for SCC as the IQR of the Final Tumor Volumes is smaller than that of Ramicane. 
 
-2. Generate a scatter plot of tumor volume versus mouse weight for the Capomulin treatment regimen.
+### A Closer Look at Tumor Volume and Weight
+<p align='center'>
+<img width="696" alt="Screenshot 2023-07-07 at 1 24 02 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/fb6edba6-bc5e-4792-9c9d-787cc8a8fa65">
+</p>
 
-### Calculate Correlation and Regression
+<p align='center'>
+<img width="629" alt="Screenshot 2023-07-07 at 1 24 13 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/d4782ea2-9662-407c-8a2b-9e5ebe0966b4">
+</p>
 
-1. Calculate the correlation coefficient and linear regression model between mouse weight and average tumor volume for the Capomulin treatment. 
+The correlation coefficient has a value of 0.842
+This suggests that there is a moderate correlation between average weight and tumor volume of mice treated with Capomulin.
+This process was repeated with mice treated with Ramicane for comparison.
 
-2. Plot the linear regression model on top of the previous scatter plot.
+<p align='center'>
+<img width="641" alt="Screenshot 2023-07-07 at 1 31 50 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/e8272728-0661-4057-82c2-e98e025907f7">
+</p>
 
-### Submit Your Final Analysis
-
-Review all the figures and tables that you generated in this assignment. Write at least three observations or inferences that can be made from the data. Include these observations at the top of your notebook.
-
-## Hints and Considerations
-
-* Use the code comments in the provided starter file to guide you through this assignment. 
-
-* Use proper labeling for your plots, that is, include plot titles, axis labels, legend labels, _x_-axis and _y_-axis limits, etc.
-
-* While working on this assignment, refer to Stack Overflow and the Matplotlib documentation as needed. These are essential tools in every data analyst's tool belt.
-
-* Remember that there are many ways to approach a data problem. One way to break up your task into micro tasks. For example, ask yourself questions like the following:
-
-  * How does my DataFrame need to be structured in order to have the right _x_-axis and _y_-axis?
-
-  * How do I build a basic scatter plot?
-
-  * How do I add a label to a scatter plot?
-
-  * Where in the DataFrame can I find the names that will go into the labels?
+## Insights
+Three Insights on Capomulin Treatment:
+1. Capomulin is the best treatment in this sample at treating SCC; by observing the final tumor volumes, we see that mice treated with capomulin have significantly lower final tumor volumes than mice treated with the other drug regimen.
+2. Mice treated with capomulin tend to lose weight as the tumor volume decreases; the correlation coefficient for Average Weight vs Average Tumor Volume is 0.842, suggesting that there is strong correlation between the two variables.
+3. The Ramicane drug has similar results as the Capomulin treatment. Average Weight and Average Tumor Volume also have a correlation coefficient of 0.806, suggesting strong correlation between the two variables. This could imply that the two drugs work in similar fashion. Final average tumor volumes for the Ramicane treatment are significantly lower than the other two treatments in the sample.
 
 
 ## References
