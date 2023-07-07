@@ -97,6 +97,7 @@ Pandas .plot function was then used in order visualize the results.
 The boxplot suggests that Capomulin remains the best treatment for SCC as the IQR of the Final Tumor Volumes is smaller than that of Ramicane. 
 
 ### A Closer Look at Tumor Volume and Weight
+The correlation between Tumor Volume and Weight was analyzed as it was observed that weight was dereasing as treatment time proceeded. In order to verify if there is a relationship between these two variables, a linear regression model was created for mice treated with Capomulin, the most effective treatment.
 <p align='center'>
 <img width="696" alt="Screenshot 2023-07-07 at 1 24 02 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/fb6edba6-bc5e-4792-9c9d-787cc8a8fa65">
 </p>
@@ -105,8 +106,8 @@ The boxplot suggests that Capomulin remains the best treatment for SCC as the IQ
 <img width="629" alt="Screenshot 2023-07-07 at 1 24 13 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/d4782ea2-9662-407c-8a2b-9e5ebe0966b4">
 </p>
 
-The correlation coefficient has a value of 0.842
-This suggests that there is a moderate correlation between average weight and tumor volume of mice treated with Capomulin.
+The correlation coefficient has a value of 0.842.\
+This suggests that there is a moderate correlation between average weight and tumor volume of mice treated with Capomulin.\
 This process was repeated with mice treated with Ramicane for comparison.
 
 <p align='center'>
