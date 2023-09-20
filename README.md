@@ -72,26 +72,95 @@ clean_results_df
 
 ### Summary Statistics
 The purpose of this analysis is observe how effective each treatment is to treat SCC. The key metric of interest is Tumor Volume (mm3) and we can generate statistics for each treatment using pandas' groupby function, specifying the statistics that we want to observe: mean, median, variance, standard deviation, and standard error of mean. 
-<p align="center">
-<img width="969" alt="Screenshot 2023-07-05 at 3 25 43 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/c96fb93f-fca7-4fb8-ad0c-39ef64f540b5">
-</p>
 
-These values can then be sorted by a specific metric to find treatments of interest, here they are sorted my the average mean tumor size.
-<p align="center">
-<img width="510" alt="Screenshot 2023-07-05 at 3 43 18 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/38e84528-c22b-49d8-bc6e-43cbc6422699">
-</p>
+```python
+# Generates a summary statistics table
+tumor_mean = clean_results_df['Tumor Volume (mm3)'].groupby(clean_results_df['Drug Regimen']).mean()
+tumor_median = clean_results_df['Tumor Volume (mm3)'].groupby(clean_results_df['Drug Regimen']).median()
+tumor_var = clean_results_df['Tumor Volume (mm3)'].groupby(clean_results_df['Drug Regimen']).var()
+tumor_std = clean_results_df['Tumor Volume (mm3)'].groupby(clean_results_df['Drug Regimen']).std()
+tumor_sem = clean_results_df['Tumor Volume (mm3)'].groupby(clean_results_df['Drug Regimen']).sem()
+
+# Assemble the resulting series into a single summary dataframe.
+summary_table = pd.DataFrame({'Mean Tumor Volume': tumor_mean
+,'Median Tumor Volume' : tumor_median
+,'Tumor Volume Variance' : tumor_var
+,'Tumor Volume Standard Deviation' : tumor_std
+,"Tumor Volume Standard Error" : tumor_sem
+})
+
+summary_table
+```
+
+| Drug Regimen   |   Mean Tumor Volume |   Median Tumor Volume |   Tumor Volume Variance |   Tumor Volume Standard Deviation |   Tumor Volume Standard Error |
+|:---------------|--------------------:|----------------------:|------------------------:|----------------------------------:|------------------------------:|
+| Capomulin      |             40.6757 |               41.5578 |                 24.9478 |                           4.99477 |                      0.329346 |
+| Ceftamin       |             52.5912 |               51.7762 |                 39.2902 |                           6.26819 |                      0.469821 |
+| Infubinol      |             52.8848 |               51.8206 |                 43.1287 |                           6.56724 |                      0.492236 |
+| Ketapril       |             55.2356 |               53.6987 |                 68.5536 |                           8.27971 |                      0.60386  |
+| Naftisol       |             54.3316 |               52.5093 |                 66.1735 |                           8.13471 |                      0.596466 |
+| Placebo        |             54.0336 |               52.2889 |                 61.1681 |                           7.821   |                      0.581331 |
+| Propriva       |             52.3935 |               50.91   |                 43.1388 |                           6.56801 |                      0.525862 |
+| Ramicane       |             40.2167 |               40.6732 |                 23.4867 |                           4.84631 |                      0.320955 |
+| Stelasyn       |             54.2331 |               52.4317 |                 59.4506 |                           7.71042 |                      0.573111 |
+| Zoniferol      |             53.2365 |               51.8185 |                 48.5334 |                           6.96659 |                      0.516398 |
+
+These values are then sorted by a specific metric to find treatments of interest. In this case, we are interested in the average tumor size of each mice undergoing certain drug regimens.
+```python
+# Producing summary statistics table
+summary_table2 = clean_results_df['Tumor Volume (mm3)'].groupby(clean_results_df['Drug Regimen']).aggregate(['mean','median','var', 'std','sem'])
+summary_table2
+```
+
+| Drug Regimen   |    mean |   median |     var |     std |      sem |
+|:---------------|--------:|---------:|--------:|--------:|---------:|
+| Capomulin      | 40.6757 |  41.5578 | 24.9478 | 4.99477 | 0.329346 |
+| Ceftamin       | 52.5912 |  51.7762 | 39.2902 | 6.26819 | 0.469821 |
+| Infubinol      | 52.8848 |  51.8206 | 43.1287 | 6.56724 | 0.492236 |
+| Ketapril       | 55.2356 |  53.6987 | 68.5536 | 8.27971 | 0.60386  |
+| Naftisol       | 54.3316 |  52.5093 | 66.1735 | 8.13471 | 0.596466 |
+| Placebo        | 54.0336 |  52.2889 | 61.1681 | 7.821   | 0.581331 |
+| Propriva       | 52.3935 |  50.91   | 43.1388 | 6.56801 | 0.525862 |
+| Ramicane       | 40.2167 |  40.6732 | 23.4867 | 4.84631 | 0.320955 |
+| Stelasyn       | 54.2331 |  52.4317 | 59.4506 | 7.71042 | 0.573111 |
+| Zoniferol      | 53.2365 |  51.8185 | 48.5334 | 6.96659 | 0.516398 |
 
 Based on the summary statistics, the four treatment regimens that yield the smallest average tumor size are Capomulin, Ceftamin, Propriva, and Ramincane.
 
 ### Quartiles, Outliers, and Boxplot
 We can then calculate quartiles for the the four most promising treament regimens and identify any outliers that may be worth taking a look at. We can do this by taking the last time point for each mouse and grouping them by Mouse ID. Once each treatment is grouped by Mouse ID, we can calculate quartiles and print outliers. 
 
-<p align="center">
-<img width="1053" alt="Screenshot 2023-07-05 at 4 08 16 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/c625d3f6-4711-4c73-b8e8-33b21be6363f">
-</p>
+```python
+# Put treatments into a list for for loop (and later for plot labels)
+treatments =  ['Capomulin', 'Ramicane', 'Infubinol', 'Ceftamin']
+potential_outliers = 0
 
-The preceeding code prints the following: 
+# Calculates IQR and quantitatively determines potential outliers. 
+for regimen in treatments:
+    regimen_df = regimen_tumor_max[regimen_tumor_max['Drug Regimen'] == regimen]
 
+    quartiles = regimen_df['Tumor Volume (mm3)'].quantile([.25,.5,.75])
+    lowerq = quartiles[0.25]
+    upperq = quartiles[0.75]
+    iqr = upperq-lowerq
+
+    print(f'Regimen: {regimen}')
+    print(f"The lower quartile of tumor volumes is: {lowerq}")
+    print(f"The upper quartile of tumor volumes is: {upperq}")
+    print(f"The interquartile range of tumor volumes is: {iqr}")
+
+    lower_bound = lowerq - (1.5*iqr)
+    upper_bound = upperq + (1.5*iqr)
+    print(f"Values below {lower_bound} could be outliers.")
+    print(f"Values above {upper_bound} could be outliers.")
+
+    potential_outliers = regimen_df.loc[(regimen_df['Tumor Volume (mm3)'] >= upper_bound) | (regimen_df['Tumor Volume (mm3)'] <= lower_bound)]
+    print(f"{regimen}'s potential outliers:")
+    print(potential_outliers[['Mouse ID','Tumor Volume (mm3)']])
+    print('\n')
+```
+
+output:
 Regimen: Capomulin\
 The lower quartile of tumor volumes is: 32.377\
 The upper quartile of tumor volumes is: 40.159\
