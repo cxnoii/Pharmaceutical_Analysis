@@ -197,7 +197,7 @@ Values below 25.355 could be outliers.\
 Values above 87.666 could be outliers.\
 No potential outliers!
 
-Plotting the final tumor volumes 
+Plotting the final tumor volumes of each regimen allow us to visualize which treatment had the best performance.
 <p align='center'>
 <img width="584" alt="Screenshot 2023-07-07 at 1 07 37 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/42d1bf9e-ed37-4fec-8b0c-2e25610bf5a4">
 </p>
