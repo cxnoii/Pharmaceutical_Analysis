@@ -109,33 +109,33 @@ These values are then sorted by a specific metric to find treatments of interest
 ```python
 # Producing summary statistics table
 summary_table2 = clean_results_df['Tumor Volume (mm3)'].groupby(clean_results_df['Drug Regimen']).aggregate(['mean','median','var', 'std','sem'])
-summary_table2
+summary_table2.sort_values(by="mean")
 ```
 
 | Drug Regimen   |    mean |   median |     var |     std |      sem |
 |:---------------|--------:|---------:|--------:|--------:|---------:|
+| Ramicane       | 40.2167 |  40.6732 | 23.4867 | 4.84631 | 0.320955 |
 | Capomulin      | 40.6757 |  41.5578 | 24.9478 | 4.99477 | 0.329346 |
+| Propriva       | 52.3935 |  50.91   | 43.1388 | 6.56801 | 0.525862 |
 | Ceftamin       | 52.5912 |  51.7762 | 39.2902 | 6.26819 | 0.469821 |
 | Infubinol      | 52.8848 |  51.8206 | 43.1287 | 6.56724 | 0.492236 |
-| Ketapril       | 55.2356 |  53.6987 | 68.5536 | 8.27971 | 0.60386  |
-| Naftisol       | 54.3316 |  52.5093 | 66.1735 | 8.13471 | 0.596466 |
-| Placebo        | 54.0336 |  52.2889 | 61.1681 | 7.821   | 0.581331 |
-| Propriva       | 52.3935 |  50.91   | 43.1388 | 6.56801 | 0.525862 |
-| Ramicane       | 40.2167 |  40.6732 | 23.4867 | 4.84631 | 0.320955 |
-| Stelasyn       | 54.2331 |  52.4317 | 59.4506 | 7.71042 | 0.573111 |
 | Zoniferol      | 53.2365 |  51.8185 | 48.5334 | 6.96659 | 0.516398 |
+| Placebo        | 54.0336 |  52.2889 | 61.1681 | 7.821   | 0.581331 |
+| Stelasyn       | 54.2331 |  52.4317 | 59.4506 | 7.71042 | 0.573111 |
+| Naftisol       | 54.3316 |  52.5093 | 66.1735 | 8.13471 | 0.596466 |
+| Ketapril       | 55.2356 |  53.6987 | 68.5536 | 8.27971 | 0.60386  |
 
-Based on the summary statistics, the four treatment regimens that yield the smallest average tumor size are Capomulin, Ceftamin, Propriva, and Ramincane.
+Based on the summary statistics, the four treatment regimens that yield the smallest average tumor size are Ramicane, Capomulin, Propriva, and Ceftamin.
 
 ### Quartiles, Outliers, and Boxplot
 We can then calculate quartiles for the the four most promising treament regimens and identify any outliers that may be worth taking a look at. We can do this by taking the last time point for each mouse and grouping them by Mouse ID. Once each treatment is grouped by Mouse ID, we can calculate quartiles and print outliers. 
 
 ```python
 # Put treatments into a list for for loop (and later for plot labels)
-treatments =  ['Capomulin', 'Ramicane', 'Infubinol', 'Ceftamin']
+treatments =  ['Capomulin', 'Ramicane', 'Propriva', 'Ceftamin']
 potential_outliers = 0
 
-# Calculates IQR and quantitatively determines potential outliers. 
+# Calculate the IQR and quantitatively determine if there are any potential outliers. 
 for regimen in treatments:
     regimen_df = regimen_tumor_max[regimen_tumor_max['Drug Regimen'] == regimen]
 
@@ -145,19 +145,23 @@ for regimen in treatments:
     iqr = upperq-lowerq
 
     print(f'Regimen: {regimen}')
-    print(f"The lower quartile of tumor volumes is: {lowerq}")
-    print(f"The upper quartile of tumor volumes is: {upperq}")
-    print(f"The interquartile range of tumor volumes is: {iqr}")
+    print(f"The lower quartile of tumor volumes is: {lowerq.round(3)}")
+    print(f"The upper quartile of tumor volumes is: {upperq.round(3)}")
+    print(f"The interquartile range of tumor volumes is: {iqr.round(3)}")
 
     lower_bound = lowerq - (1.5*iqr)
     upper_bound = upperq + (1.5*iqr)
-    print(f"Values below {lower_bound} could be outliers.")
-    print(f"Values above {upper_bound} could be outliers.")
+    print(f"Values below {lower_bound.round(3)} could be outliers.")
+    print(f"Values above {upper_bound.round(3)} could be outliers.")
 
     potential_outliers = regimen_df.loc[(regimen_df['Tumor Volume (mm3)'] >= upper_bound) | (regimen_df['Tumor Volume (mm3)'] <= lower_bound)]
-    print(f"{regimen}'s potential outliers:")
-    print(potential_outliers[['Mouse ID','Tumor Volume (mm3)']])
-    print('\n')
+    if potential_outliers.empty:
+        print("No potential outliers!")
+    else:
+        print(f"{regimen}'s potential outliers:")
+        print(potential_outliers[['Mouse ID','Tumor Volume (mm3)']])
+        print('\n')
+
 ```
 
 output:\
@@ -193,7 +197,7 @@ Values below 25.355 could be outliers.\
 Values above 87.666 could be outliers.\
 No potential outliers!
 
-Pandas .plot function was then used in order visualize the results.
+Plotting the final tumor volumes 
 <p align='center'>
 <img width="584" alt="Screenshot 2023-07-07 at 1 07 37 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/42d1bf9e-ed37-4fec-8b0c-2e25610bf5a4">
 </p>
