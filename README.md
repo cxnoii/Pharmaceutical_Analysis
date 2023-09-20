@@ -42,14 +42,13 @@ mouse_results = pd.merge(study_results, mouse_metadata)
 # Display the data table for preview
 mouse_results.head()
 ```
-
-x	Mouse ID	Timepoint	Tumor Volume (mm3)	Metastatic Sites	Drug Regimen	Sex	Age_months	Weight (g)
-0	b128	0	45	0	Capomulin	Female	9	22
-1	b128	5	45.6513	0	Capomulin	Female	9	22
-2	b128	10	43.2709	0	Capomulin	Female	9	22
-3	b128	15	43.7849	0	Capomulin	Female	9	22
-4	b128	20	42.7316	0	Capomulin	Female	9	22
-
+| x | Mouse ID   |   Timepoint |   Tumor Volume (mm3) |   Metastatic Sites | Drug Regimen   | Sex    |   Age_months |   Weight (g) |
+|---:|:-----------|------------:|---------------------:|-------------------:|:---------------|:-------|-------------:|-------------:|
+|  0 | b128       |           0 |              45      |                  0 | Capomulin      | Female |            9 |           22 |
+|  1 | b128       |           5 |              45.6513 |                  0 | Capomulin      | Female |            9 |           22 |
+|  2 | b128       |          10 |              43.2709 |                  0 | Capomulin      | Female |            9 |           22 |
+|  3 | b128       |          15 |              43.7849 |                  0 | Capomulin      | Female |            9 |           22 |
+|  4 | b128       |          20 |              42.7316 |                  0 | Capomulin      | Female |            9 |           22 |
 
 
 2. Before conducting any analysis, the dataset must be cleaned; duplicated rows will affect the integrity of the results. The function duplicated returns an array with mouse_id g898, indicating that it is a duplicate. 
