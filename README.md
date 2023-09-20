@@ -160,7 +160,7 @@ for regimen in treatments:
     print('\n')
 ```
 
-output:
+output:\
 Regimen: Capomulin\
 The lower quartile of tumor volumes is: 32.377\
 The upper quartile of tumor volumes is: 40.159\
