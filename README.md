@@ -56,20 +56,13 @@ output:
 array(['g989'], dtype=object)
 ```
 
-The following code will create a dataframe without the duplicated record.
+The following code will create a dataframe without the duplicated record. Accuracte summaracy statistics can now be generated. 
 ```python
 # Creates a clean dataframe with duplicate mouse removed. 
 #This dateframe has just one entry for each time point for each mouse_id
 clean_results_df = mouse_results.drop_duplicates(['Mouse ID','Timepoint'])
 clean_results_df
 ```
-
-Using pandas dataframe function, .duplicated, reveals that mouse_id g989 has duplicated rows that must be removed from the dataset.
-<p align="center">
-<img width="576" alt="Screenshot 2023-07-05 at 3 15 45 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/8146b385-8466-424f-bad3-1b0da66398d7">
-</p>
-
-With the dataset cleaned, accurate summary statistics can now be generated. 
 
 ### Summary Statistics
 The purpose of this analysis is observe how effective each treatment is to treat SCC. The key metric of interest is Tumor Volume (mm3) and we can generate statistics for each treatment using pandas' groupby function, specifying the statistics that we want to observe: mean, median, variance, standard deviation, and standard error of mean. 
