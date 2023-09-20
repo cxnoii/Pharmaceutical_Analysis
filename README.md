@@ -22,16 +22,47 @@ The dataset contains the following metrics
 
 ### Data Preparation
 1. The dataset was first read into a dataframe from a csv using Pandas.
-<p align="center">
-<img width="802" alt="Screenshot 2023-07-05 at 3 08 15 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/1c27160c-3fa4-4b12-875f-8e42d3f68683">
-</p>
+```python
+# Dependencies and Setup
+import matplotlib.pyplot as plt
+import pandas as pd
+import scipy.stats as st
+
+# Declaring file paths
+mouse_metadata_path = "data/Mouse_metadata.csv"
+study_results_path = "data/Study_results.csv"
+
+# Reads in mouse data and study results
+mouse_metadata = pd.read_csv(mouse_metadata_path)
+study_results = pd.read_csv(study_results_path)
+
+# Combines data into single data set
+mouse_results = pd.merge(study_results, mouse_metadata)
+
+# Display the data table for preview
+mouse_results.head()
+```
 
 
 
-3. Before conducting any analysis, the dataset must be cleaned; duplicated rows will affect the integrity of the results.
-<p align="center">
-<img width="820" alt="Screenshot 2023-07-05 at 3 13 35 PM" src="https://github.com/cxnoii/pymaceuticals/assets/114107454/febbf9ee-0d98-4602-8c16-c3b77c0453c4">
-</p>
+2. Before conducting any analysis, the dataset must be cleaned; duplicated rows will affect the integrity of the results. The function duplicated returns an array with mouse_id g898, indicating that it is a duplicate. 
+
+```python
+# Getting the duplicate mice by ID number that shows up for Mouse ID and Timepoint. 
+dupe_id = mouse_results.loc[mouse_results.duplicated(subset=['Mouse ID', 'Timepoint']), 'Mouse ID'].unique()
+dupe_id
+
+output:
+array(['g989'], dtype=object)
+```
+
+The following code will create a dataframe without the duplicated record.
+```python
+# Creates a clean dataframe with duplicate mouse removed. 
+#This dateframe has just one entry for each time point for each mouse_id
+clean_results_df = mouse_results.drop_duplicates(['Mouse ID','Timepoint'])
+clean_results_df
+```
 
 Using pandas dataframe function, .duplicated, reveals that mouse_id g989 has duplicated rows that must be removed from the dataset.
 <p align="center">
